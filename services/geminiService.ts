@@ -1,8 +1,11 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 import { Movie, Genre } from "../types";
+import { mockMoviesByGenre, mockAllRows } from "./mockData";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// prefer GEMINI_API_KEY; vite injects process.env.GEMINI_API_KEY per vite.config
+const GEMINI_KEY = process.env.GEMINI_API_KEY || process.env.API_KEY || '';
+const ai = GEMINI_KEY ? new GoogleGenAI({ apiKey: GEMINI_KEY }) : null;
 
 const movieSchema = {
   type: Type.ARRAY,
@@ -22,13 +25,15 @@ const movieSchema = {
 };
 
 export const fetchMoviesByGenre = async (genre: Genre): Promise<Movie[]> => {
+  // If no API key is present, return mock data for a fast, local dev experience
+  if (!GEMINI_KEY) {
+    return mockMoviesByGenre(genre);
+  }
+
   try {
-    const response = await ai.models.generateContent({
+    const response = await ai!.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: `Generate a list of 10 fictional but realistic movie objects for the genre: "${genre}". 
-      Each movie must have a unique ID, a compelling title, a detailed 2-sentence overview, 
-      random numeric seeds (1-1000) for backdrop_path and poster_path, a vote average from 1-10, 
-      and a release date between 2010 and 2024.`,
+      contents: `Generate a list of 10 fictional but realistic movie objects for the genre: "${genre}". \n      Each movie must have a unique ID, a compelling title, a detailed 2-sentence overview, \n      random numeric seeds (1-1000) for backdrop_path and poster_path, a vote average from 1-10, \n      and a release date between 2010 and 2024.`,
       config: {
         responseMimeType: "application/json",
         responseSchema: movieSchema,
@@ -45,11 +50,17 @@ export const fetchMoviesByGenre = async (genre: Genre): Promise<Movie[]> => {
     }));
   } catch (error) {
     console.error(`Error fetching movies for ${genre}:`, error);
-    return [];
+    // On error, fall back to mock data so the UI remains usable
+    return mockMoviesByGenre(genre);
   }
 };
 
 export const fetchAllRows = async (): Promise<{ title: Genre; movies: Movie[] }[]> => {
+  // If the API key is missing, return mock rows immediately
+  if (!GEMINI_KEY) {
+    return mockAllRows();
+  }
+
   const genres = Object.values(Genre);
   const results = await Promise.all(
     genres.map(async (genre) => {
