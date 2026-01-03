@@ -1,0 +1,5 @@
+{
+  "name": "Netflix Clone Pro",
+  "description": "A high-performance Netflix clone built with React, Tailwind CSS, and powered by Gemini to simulate a dynamic movie database experience.",
+  "requestFramePermissions": []
+}
