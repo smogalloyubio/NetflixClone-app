@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
         - name: google-cloud-deployment
-          image: us-central1-docker.pkg.dev/kkgcplabs01-036/netflix-clone/myclone-netflix-app:v1
+          image: rukevweubio/myclone-netflix-app: v1
           ports:
             - containerPort: 80
