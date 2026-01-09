@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: google-cloud-deployment-canary
+  namespace: canary
+  labels:
+    app: netflix-app-clone
+    version: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netflix-app-clone
+      version: canary
+  template:
+    metadata:
+      labels:
+        app: netflix-app-clone
+        version: canary
+    spec:
+      containers:
+        - name: google-cloud-deployment-canary
+          image: rukevweubio/myclone-netflix-app:latest
+          ports:
+            - containerPort: 80
