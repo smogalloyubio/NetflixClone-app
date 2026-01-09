@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflix-app-service
+  namespace: dev
+  labels:
+    app: netflix-app-clone
+spec:
+  selector:
+    app: netflix-app-clone
+  ports:
+    - protocol: TCP
+      port: 80           
+      targetPort: 80     
+  type: LoadBalancer    

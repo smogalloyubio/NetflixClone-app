@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: google-cloud-deployment
+  namespace: dev
+  labels:
+    app: netflix-app-clone
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: netflix-app-clone
+  template:
+    metadata:
+      labels:
+        app: netflix-app-clone
+    spec:
+      containers:
+        - name: google-cloud-deployment
+          image: us-central1-docker.pkg.dev/kkgcplabs01-036/netflix-clone/myclone-netflix-app:v1
+          ports:
+            - containerPort: 80
