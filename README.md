@@ -177,7 +177,7 @@ Apply namespace locally (optional validation):
  kubectl get nodes
  kubectl  get namespace  --all-namespace 
 ```
-**Screenshot placeholder:**
+![Google kubernstes cluster](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2012.33.10.png)
 
 
 
