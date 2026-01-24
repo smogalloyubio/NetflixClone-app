@@ -174,11 +174,12 @@ REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
 Apply namespace locally (optional validation):
 
 ```bash
-kubectl apply -f k8s-manifests/namespace.yaml
+ kubectl get nodes
+ kubectl  get namespace  --all-namespace 
 ```
 **Screenshot placeholder:**
 
-> Add screenshot of Kubernetes resources created here
+
 
 ---
 
