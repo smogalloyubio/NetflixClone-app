@@ -156,9 +156,9 @@ Example Artifact Registry image format:
 REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
 ```
 
-**Screenshot placeholder:**
+**![Gitaction pipeline](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2011.12.05.png)**
 
-> Add screenshot of GitHub Actions successful pipeline run here
+
 
 ---
 
