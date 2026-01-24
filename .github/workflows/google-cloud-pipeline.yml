@@ -1,0 +1,55 @@
+name: Deploy the image to Google Cloud Artifact Registry
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  IMAGE_NAME: netflix-clone-app
+  GOOGLE_REPO: us-central1-docker.pkg.dev/ubioworo-project/my-app-repo
+  GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE }}
+  IMAGE_TAG: latest
+
+jobs:
+  build_deploy_docker_image_google_cloud:
+    runs-on: ubuntu-latest
+
+    steps:
+     
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+   
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: "${{ secrets.GOOGLE_SERVICE }}"
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  
+
+      
+      - name: Configure Docker
+        run: |
+          gcloud auth configure-docker us-central1-docker.pkg.dev
+
+  
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build app
+        run: npm run build
+
+ 
+      - name: Build Docker image
+        run: |
+          docker build -t us-central1-docker.pkg.dev/ubioworo-project/my-app-repo/my-app:${{ env.IMAGE_TAG }} .
+
+     
+      - name: Push Docker image
+        run: |
+          docker push us-central1-docker.pkg.dev/ubioworo-project/my-app-repo/my-app:${{ env.IMAGE_TAG }}

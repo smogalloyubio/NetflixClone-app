@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflix-clone
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netflix
+  template:
+    metadata:
+      labels:
+        app: netflix
+    spec:
+      containers:
+      - name: netflix-app
+        image: us-central1-docker.pkg.dev/ubioworo-project/my-app-repo/netflix-clone:latest
+        ports:
+        - containerPort: 80
