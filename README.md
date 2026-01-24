@@ -139,7 +139,7 @@ Terraform provisions:
 * Networking resources
 * Required IAM roles and service accounts
 
-**Screenshot placeholder:**
+**![Terraform  apply command](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2012.18.12.png):**
 
 
 
