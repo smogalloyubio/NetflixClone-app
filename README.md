@@ -195,9 +195,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 * Create Argo CD Application pointing to GitHub repo
 * Enable auto-sync
 
-**Screenshot placeholder:**
-
-> Add screenshot of Argo CD dashboard showing synced application
+![argocd cd](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-23%20at%2023.38.26.png)
 
 ---
 
