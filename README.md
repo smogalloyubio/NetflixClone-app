@@ -302,7 +302,7 @@ Check backup status:
 velero backup get
 ```
 
-![velero backup](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2013.22.51.png)
+![velero backup](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2013.21.54.png)
 
 
 
@@ -313,7 +313,8 @@ velero backup get
 * Delete the application namespace or entire cluster
 
 ```bash
-kubectl delete namespace <APP_NAMESPACE>
+kubectl delete namespace -all-namespace  dev  canary argocd
+kubectl get namespace 
 ```
 
 📸 **Screenshot placeholder:**
