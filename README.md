@@ -128,9 +128,27 @@ gcloud  auth  application-deafult login
 1. Navigate to the Terraform directory:
 
 ```bash
+
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+
+
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+gpg --dearmor | \
+sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+
+
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+
+sudo apt-get update && sudo apt-get install terraform
+
 cd terraform
+
 terraform init
 terraform apply
+
 ```
 
 Terraform provisions:
@@ -174,8 +192,20 @@ REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
 Apply namespace locally (optional validation):
 
 ```bash
+gcloud container clusters create netflix-cluster \
+    --project=Porject_id \
+    --zone=us-central1-a \
+    --num-nodes=2 \
+    --machine-type=e2-standard-2 \
+    --enable-ip-alias \
+    --release-channel=regular \
+    --workload-pool=project_id.svc.id.goog \
+    --scopes="https://www.googleapis.com/auth/cloud-platform"
+kubectl crate namespace  dev 
  kubectl get nodes
- kubectl  get namespace  --all-namespace 
+ kubectl  get namespace  --all-namespace
+kubectl  config  get-context
+
 ```
 ![Google kubernstes cluster](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2012.33.10.png)
 
@@ -190,6 +220,12 @@ Install Argo CD on GKE:
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl get pods - n argocd
+#checl the  service of teh argocd
+kubectl  get svc -n argocd
+# chnage the  service orgocd to loadbalancer
+kubectl  patch  svc/argocd-server -n argocd -p
+# connect the git repo to argocd 
 ```
 
 * Create Argo CD Application pointing to GitHub repo
@@ -207,7 +243,12 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 Verify deployment:
 
 ```bash
-kubectl get pods -n <APP_NAMESPACE>
+kubectl get pods -n namespace
+kuebctl get all --all-namespace
+kubectl get pods -n dev
+#check  deployment of the  namespace
+kubectl get pods -n  dev 
+
 ```
  **![ argocd  deployment](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-23%20at%2023.45.03.png):**
 
@@ -220,11 +261,24 @@ kubectl get pods -n <APP_NAMESPACE>
 Install Velero with GCS backend:
 
 ```bash
+
+# Download the latest Linux release
+wget https://github.com/vmware-tanzu/velero/releases/download/v1.15.0/velero-v1.15.0-linux-amd64.tar.gz
+
+# Extract the file
+tar -xvf velero-v1.15.0-linux-amd64.tar.gz
+
+# Move the binary to your path
+sudo mv velero-v1.15.0-linux-amd64/velero /usr/local/bin/
+
+# Verify installation
+velero version --client-only
 velero install \
   --provider gcp \
   --plugins velero/velero-plugin-for-gcp:v1.8.0 \
   --bucket <GCS_BUCKET_NAME> \
   --secret-file ./credentials-velero
+
 ```
 
 📸 **Screenshot placeholder:**
