@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: google-cloud-deployment
-          image: rukevweubio/myclone-netflix-app:latest
+          image: us-central1-docker.pkg.dev/ubioworo-project/my-app-repo/my-app:latest
           ports:
             - containerPort: 80
      
