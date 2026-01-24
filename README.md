@@ -209,10 +209,9 @@ Verify deployment:
 ```bash
 kubectl get pods -n <APP_NAMESPACE>
 ```
+ **![ argocd  deployment](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-23%20at%2023.45.03.png):**
 
-📸 **Screenshot placeholder:**
 
-> Add screenshot of running pods and services
 
 ---
 
