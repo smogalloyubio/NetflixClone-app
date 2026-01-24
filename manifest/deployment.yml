@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: netflix-app
-        image: us-central1-docker.pkg.dev/ubioworo-project/my-app-repo/netflix-clone:latest
+        image: us-central1-docker.pkg.dev/ubioworo-project/my-app-repo/my-app:latest:latest
         ports:
         - containerPort: 80
