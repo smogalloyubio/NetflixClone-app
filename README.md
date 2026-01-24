@@ -280,10 +280,8 @@ velero install \
   --secret-file ./credentials-velero
 
 ```
+**![velero backup](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2013.22.31.png):**
 
-📸 **Screenshot placeholder:**
-
-> Add screenshot of Velero pods running
 
 ---
 
@@ -292,7 +290,10 @@ velero install \
 Create a namespace-scoped backup:
 
 ```bash
-velero backup create netflix-backup --include-namespaces <APP_NAMESPACE>
+velero backup create netflix-backup --include-namespaces all-namespace
+velero  backup  dscribe netflix-backup
+velero  backup get
+
 ```
 
 Check backup status:
@@ -301,9 +302,9 @@ Check backup status:
 velero backup get
 ```
 
-📸 **Screenshot placeholder:**
+![velero backup](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2013.22.51.png)
 
-> Add screenshot of successful Velero backup
+
 
 ---
 
