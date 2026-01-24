@@ -321,7 +321,7 @@ kubectl delete namespace -all-namespace  dev  canary argocd
 kubectl get namespace 
 ```
 
-📸 **Screenshot placeholder:**
+**![check  namespace](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2013.26.08.png):**
 
 > Add screenshot showing namespace deletion
 
