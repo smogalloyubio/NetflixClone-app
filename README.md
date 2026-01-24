@@ -341,9 +341,9 @@ Verify restore:
 kubectl get all -n <APP_NAMESPACE>
 ```
 
-📸 **Screenshot placeholder:**
+**![retore namespace](https://github.com/smogalloyubio/02-Devops-project-NetflixClone-app/blob/main/picture/Screenshot%202026-01-24%20at%2013.36.05.png):**
 
-> Add screenshot showing restored application
+
 
 ---
 
@@ -351,18 +351,18 @@ kubectl get all -n <APP_NAMESPACE>
 
 ```
 .
-├── terraform/          # GKE infrastructure provisioning
-├── app/                # Netflix clone application source
-├── .github/workflows/  # GitHub Actions CI pipeline
-├── k8s-manifests/      # Kubernetes YAML files
-├── argocd/             # Argo CD application definitions
-├── velero/             # Backup and restore configs
+├── terraform/          
+├── argocd/              
+├── .github/workflows/  
+├── manifest/      
+├── argocd/         
+├── velero/             
 └── README.md
 ```
 
 ---
 
-## 🧪 Disaster Recovery Test
+## Disaster Recovery Test
 
 * Created a Velero backup for the application namespace
 * Deleted the namespace / cluster
@@ -406,14 +406,7 @@ kubectl get all -n <APP_NAMESPACE>
 
 ---
 
-## Conclusion
 
-This project showcases a **real-world, production-style Kubernetes platform** with automated delivery and tested disaster recovery. It reflects practical DevOps and SRE workflows used in modern cloud-native environments.
-
----
-
-## 👤 Author
-
-**Your Name**
+**ubioworo rukevwe**
 DevOps / Cloud Engineer
 
