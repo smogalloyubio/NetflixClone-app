@@ -24,7 +24,7 @@ jobs:
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: "${{ secrets.GOOGLE_SERVICE }}"
+          credentials_json: "${{ secrets.GOOGLE_SERVICE _SA}}"
 
       # Set up Node.js
       - name: Set up Node.js
